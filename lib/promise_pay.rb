@@ -1,7 +1,6 @@
 require "promise_pay/version"
 
 module PromisePay
-  def self.test
-    "testing 1,2,3"
-  end
+  API_ENDPOINT  = "https://api.promisepay.com"
+  TEST_ENDPOINT = "https://test.api.promisepay.com"
 end

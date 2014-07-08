@@ -8,8 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = PromisePay::VERSION
   spec.authors       = ["Liam Norton"]
   spec.email         = ["iamliamnorton@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{PromisePay gem}
   spec.homepage      = ""
   spec.license       = "MIT"
 
@@ -20,4 +19,8 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.5"
   spec.add_development_dependency "rake"
+
+  spec.add_runtime_dependency "rest_client"
+  spec.add_runtime_dependency "json"
+  spec.add_runtime_dependency "active_support/core_ext/object"
 end
