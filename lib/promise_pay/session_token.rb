@@ -49,7 +49,8 @@ module PromisePay
     private
 
     def end_point
-      API_ENDPOINT + PATH + query_string
+      #API_ENDPOINT + PATH + query_string
+      TEST_ENDPOINT + PATH + query_string
     end
 
     def query_string
