@@ -1,0 +1,20 @@
+{
+  "links" : {
+    "items_buyers" : "/items/{items.id}/buyers",
+    "items_sellers" : "/items/{items.id}/sellers"
+  },
+  "items" : {
+    "id" : "wef9834tg",
+    "name" : "ItemName",
+    "created_at" : "2014-07-08T17:10:11.304+10:00",
+    "updated_at" : "2014-07-08T17:13:38.599+10:00",
+    "amount" : 10,
+    "status" : 22000,
+    "href" : "/items/wef9834tg",
+    "state" : "pending",
+    "links" : {
+      "buyers" : "2",
+      "sellers" : "1"
+    }
+  }
+}

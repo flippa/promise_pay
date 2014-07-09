@@ -8,7 +8,7 @@ describe PromisePay::User do
 
     let(:sample_response) { File.read("./spec/support/fixtures/user_find.json") }
 
-    it "returns user data for the id specified" do
+    it "returns a hash representation of the user" do
       PromisePay::Request.any_instance.stub(:execute) { sample_response }
       expect(described_class.find(user_id)).to be_a_kind_of Hash
     end
@@ -25,7 +25,7 @@ describe PromisePay::User do
   describe ".all" do
     let(:sample_response) { File.read("./spec/support/fixtures/user_all.json") }
 
-    it "returns user data" do
+    it "returns a hash representation of the users" do
       PromisePay::Request.any_instance.stub(:execute) { sample_response }
 
       expect(described_class.all).to be_a_kind_of Hash
