@@ -47,8 +47,13 @@ PromisePay::User.find(12345)
 PromisePay::Item.all
 
 # Query PromisePay for one item (1s345) returning a hash for that item
-PromisePay::User.find("1s345")
+PromisePay::Item.find("1s345")
 ```
+
+## TODO:
+
+1. Standardize the input params for PromisePay::User
+2. Try to break it!
 
 ## Contributing
 
