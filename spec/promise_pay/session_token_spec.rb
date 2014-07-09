@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe PromisePay::SessionToken do
-  describe "#generate_for" do
+  describe ".generate_for" do
 
     valid_params = {
       current_user_id:    "1",
@@ -33,20 +33,6 @@ describe PromisePay::SessionToken do
         allow(request).to receive(:execute) { response }
 
         expect(described_class.generate_for(valid_params)).to eq("123abc")
-      end
-
-      it "raises an exception when RestClient raises an Unauthorized exception" do
-        allow(request).to receive(:execute) { raise RestClient::Unauthorized }
-
-        expect { described_class.generate_for(valid_params) }.
-          to raise_error PromisePay::RequestError
-      end
-
-      it "raises an exception when a RestClient raises a BadRequest excpetion" do
-        allow(request).to receive(:execute) { raise RestClient::BadRequest }
-
-        expect { described_class.generate_for(valid_params) }.
-          to raise_error PromisePay::RequestError
       end
     end
 

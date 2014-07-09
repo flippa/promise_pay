@@ -34,11 +34,13 @@ module PromisePay
 
     def default_user
       # TODO: read this from config
+      # these are test credentials, no damage can be done
       "liam.norton@flippa.com"
     end
 
     def default_password
       # TODO: read this from config
+      # these are test credentials, no damage can be done
       "ee0003894f34f1854e4d2f1d38d081c8"
     end
 

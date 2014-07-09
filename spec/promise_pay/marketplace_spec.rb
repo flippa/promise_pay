@@ -20,12 +20,5 @@ describe PromisePay::Marketplace do
 
       described_class.initialize(user: user, password: password)
     end
-
-    it "raises an exception if a token already exists" do
-      allow(request).to receive(:execute) { raise RestClient::Unauthorized }
-
-      expect { described_class.initialize(user: user, password: password) }.
-        to raise_error PromisePay::RequestError
-    end
   end
 end
