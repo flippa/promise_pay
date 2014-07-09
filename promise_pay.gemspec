@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Liam Norton"]
   spec.email         = ["iamliamnorton@gmail.com"]
   spec.summary       = %q{PromisePay gem}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/flippa/promise_pay"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
