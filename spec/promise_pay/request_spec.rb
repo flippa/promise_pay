@@ -3,6 +3,14 @@ require "spec_helper"
 describe PromisePay::Request do
   let(:request) { described_class.new(endpoint: "https://api.promise_pay.com") }
 
+  before do
+    PromisePay.configuration = PromisePay::Configuration.new
+    PromisePay.configure do |config|
+      config.api_user = "user@email.com"
+      config.api_key  = "abc123"
+    end
+  end
+
   describe "#initialize" do
     it "takes an mandatory endpoint arguement" do
       expect { described_class.new(user: "user@email.com", password: "password") }.

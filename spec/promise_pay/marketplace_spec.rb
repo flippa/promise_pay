@@ -4,13 +4,12 @@ describe PromisePay::Marketplace do
   let(:request)   { double("RestClient::Request", execute: sample_response) }
 
   describe ".initialize" do
-    let(:user)      { "test@email.com" }
-    let(:password)  { "password" }
-
     let(:sample_response) { File.read("./spec/support/fixtures/token_generation.json") }
+    let(:user)            { "test@email.com" }
+    let(:password)        { "password" }
 
     before do
-      RestClient::Request.stub(:new) { request }
+      PromisePay::Request.stub(:new) { request }
       STDOUT.stub(:puts) { "" }
     end
 
@@ -21,7 +20,7 @@ describe PromisePay::Marketplace do
         endpoint: valid_endpoint,
         user:     user,
         password: password
-      ) { request }
+      )
 
       described_class.initialize(user: user, password: password)
     end

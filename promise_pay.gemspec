@@ -22,5 +22,4 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "rest_client"
   spec.add_runtime_dependency "json"
-  spec.add_runtime_dependency "active_support/core_ext/object"
 end

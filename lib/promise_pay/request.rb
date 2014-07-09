@@ -4,10 +4,11 @@ module PromisePay
   class Request
 
     def initialize(options = {})
-      @endpoint   = options.fetch :endpoint
-      @user       = options.fetch :user,       default_user
-      @password   = options.fetch :password,   default_password
-      @request    = build_request
+      @endpoint = options.fetch :endpoint
+      @config   = options.fetch :configuration, PromisePay.configuration
+      @user     = options.fetch :user,          config.api_user
+      @password = options.fetch :password,      config.api_key
+      @request  = build_request
     end
 
     def execute
@@ -32,19 +33,8 @@ module PromisePay
       )
     end
 
-    def default_user
-      # TODO: read this from config
-      # these are test credentials, no damage can be done
-      "liam.norton@flippa.com"
-    end
-
-    def default_password
-      # TODO: read this from config
-      # these are test credentials, no damage can be done
-      "ee0003894f34f1854e4d2f1d38d081c8"
-    end
-
     attr_reader :endpoint
+    attr_reader :config
     attr_reader :user
     attr_reader :password
     attr_reader :request

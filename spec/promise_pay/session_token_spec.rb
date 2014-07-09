@@ -4,6 +4,7 @@ describe PromisePay::SessionToken do
   let(:request) { double("RestClient::Request", execute: sample_response) }
 
   describe ".generate_for" do
+    let(:sample_response) { File.read("./spec/support/fixtures/token_generation.json") }
 
     valid_params = {
       current_user_id:    "1",
@@ -23,16 +24,14 @@ describe PromisePay::SessionToken do
       payment_type_id:    "1"
     }
 
-    let(:sample_response) { File.read("./spec/support/fixtures/token_generation.json") }
-
     context "with valid params" do
       before do
-        RestClient::Request.stub(:new) { request }
+        PromisePay::Request.stub(:new) { request }
       end
 
       it "instantiates PromisePay::Request with the correct endpoint" do
         valid_endpoint = PromisePay::TEST_ENDPOINT + PromisePay::SessionToken::PATH + valid_params.to_param
-        PromisePay::Request.should_receive(:new).with(endpoint: valid_endpoint) { request }
+        PromisePay::Request.should_receive(:new).with(endpoint: valid_endpoint)
         described_class.generate_for(valid_params)
       end
 
