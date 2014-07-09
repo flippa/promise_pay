@@ -33,28 +33,22 @@ You're set to go!
 
 ## Usage
 
-Some basic usage instructions are below:
+```ruby
+# Generate a PromisePay session, returns the session string
+PromisePay::SessionToken.generate_for(session_params)
 
-Generating a PromisePay session:
+# Query PromisePay for all users returning a hash of results
+PromisePay::User.all
 
-    PromisePay::SessionToken.generate_for(session_params)
+# Query PromisePay for one user (12345) returning a hash for that user
+PromisePay::User.find(12345)
 
-Query PromisePay for all users:
+# Query PromisePay for all items returning a hash of results
+PromisePay::Item.all
 
-    PromisePay::User.all
-
-Query PromisePay for one user (12345):
-
-    PromisePay::User.find(12345)
-
-Query PromisePay for all items:
-
-    PromisePay::Item.all
-
-Query PromisePay for one item (1s345):
-
-    PromisePay::User.find("1s345")
-
+# Query PromisePay for one item (1s345) returning a hash for that item
+PromisePay::User.find("1s345")
+```
 
 ## Contributing
 
