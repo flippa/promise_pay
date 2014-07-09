@@ -16,16 +16,16 @@ Or install it yourself as:
 
     $ gem install promise_pay
 
-Generate your API key by jumping into a console and running:
+Generate your API key by jumping into a rails console and running:
 
-    irb PromisePay::Marketplace.initialize(user: "your-email-address", password: "your-promisepay-password")
+    irb(main):001:0> PromisePay::Marketplace.initialize(user: "your@email", password: "your-promisepay-password")
 
 Add the following to `/config/initializers/promise_pay.rb`:
 
 ```ruby
 PromisePay.configure do |config|
-  config.api_user = "api_email_address" # substitute with your PromisePay api email
-  config.api_key = "api_key" # substitute with your PromisePay api key (generated above)
+  config.api_user = "api_email" # substitute with your PromisePay API email
+  config.api_key = "api_key" # substitute with your PromisePay API key (generated above)
 end
 ```
 
@@ -33,7 +33,28 @@ You're set to go!
 
 ## Usage
 
-TODO: Write usage instructions here
+Some basic usage instructions are below:
+
+Generating a PromisePay session:
+
+    PromisePay::SessionToken.generate_for(session_params)
+
+Query PromisePay for all users:
+
+    PromisePay::User.all
+
+Query PromisePay for one user (12345):
+
+    PromisePay::User.find(12345)
+
+Query PromisePay for all items:
+
+    PromisePay::Item.all
+
+Query PromisePay for one item (1s345):
+
+    PromisePay::User.find("1s345")
+
 
 ## Contributing
 
