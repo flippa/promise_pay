@@ -5,17 +5,17 @@ describe PromisePay::Marketplace do
     let(:user)      { "test@email.com" }
     let(:password)  { "password" }
 
-    let(:request)   { double("RestClient::Request") }
+    let(:request)   { double("RestClient::Request", execute: sample_response) }
 
-    let(:sample_response) { "{\"token\":\"12345\"}" }
+    let(:sample_response) { File.read("./spec/support/fixtures/token_generation.json") }
 
     before do
       RestClient::Request.stub(:new) { request }
+      STDOUT.stub(:puts) { "" }
     end
 
     it "instantiates PromisePay::Request with the correct endpoint" do
       valid_endpoint = PromisePay::TEST_ENDPOINT + PromisePay::Marketplace::PATH
-      request = double("PromisePay::Request", execute: sample_response)
 
       PromisePay::Request.should_receive(:new).with(
         endpoint: valid_endpoint,
@@ -27,10 +27,8 @@ describe PromisePay::Marketplace do
     end
 
     it "outputs the generated marketplace token" do
-      allow(request).to receive(:execute) { sample_response }
-
-      message = "Your marketplace token is: 12345 (Store this securely)"
-      STDOUT.should_receive(:puts).with(message)
+      expected_output = "Your marketplace token is: 123abc (Store this securely)"
+      STDOUT.should_receive(:puts).with(expected_output)
 
       described_class.initialize(user: user, password: password)
     end
