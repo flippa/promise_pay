@@ -21,6 +21,8 @@ describe PromisePay::SessionToken do
       payment_type_id:    "1"
     }
 
+    let(:sample_response) { "{\"token\":\"123abc\"}" }
+
     context "with valid params" do
       let(:request) { double("RestClient::Request") }
 
@@ -28,9 +30,17 @@ describe PromisePay::SessionToken do
         RestClient::Request.stub(:new) { request }
       end
 
+      it "instantiates PromisePay::Request with the correct endpoint" do
+        valid_endpoint = PromisePay::TEST_ENDPOINT + PromisePay::SessionToken::PATH + valid_params.to_param
+        request = double("PromisePay::Request", execute: sample_response)
+
+        PromisePay::Request.should_receive(:new).with(endpoint: valid_endpoint) { request }
+
+        described_class.generate_for(valid_params)
+      end
+
       it "returns the generated session token from PromisePay" do
-        response = "{\"token\":\"123abc\"}"
-        allow(request).to receive(:execute) { response }
+        allow(request).to receive(:execute) { sample_response }
 
         expect(described_class.generate_for(valid_params)).to eq("123abc")
       end
