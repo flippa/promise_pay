@@ -15,9 +15,7 @@ describe PromisePay::User do
 
     it "instantiates PromisePay::Request with the correct endpoint" do
       valid_endpoint = PromisePay::TEST_ENDPOINT + PromisePay::User::PATH + user_id.to_s
-
       PromisePay::Request.should_receive(:new).with(endpoint: valid_endpoint) { request }
-
       described_class.find(user_id)
     end
   end
@@ -27,15 +25,12 @@ describe PromisePay::User do
 
     it "returns a hash representation of the users" do
       PromisePay::Request.any_instance.stub(:execute) { sample_response }
-
       expect(described_class.all).to be_a_kind_of Hash
     end
 
     it "instantiates PromisePay::Request with the correct endpoint" do
       valid_endpoint = PromisePay::TEST_ENDPOINT + PromisePay::User::PATH
-
       PromisePay::Request.should_receive(:new).with(endpoint: valid_endpoint) { request }
-
       described_class.all
     end
   end

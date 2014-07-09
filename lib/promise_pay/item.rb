@@ -8,8 +8,12 @@ module PromisePay
       new(item_id: item_id).query
     end
 
+    def self.all
+      new.query
+    end
+
     def initialize(options = {})
-      @item_id = options.fetch :item_id
+      @item_id = options.fetch :item_id, nil
     end
 
     def query

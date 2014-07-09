@@ -1,11 +1,11 @@
 require "spec_helper"
 
 describe PromisePay::Marketplace do
+  let(:request)   { double("RestClient::Request", execute: sample_response) }
+
   describe ".initialize" do
     let(:user)      { "test@email.com" }
     let(:password)  { "password" }
-
-    let(:request)   { double("RestClient::Request", execute: sample_response) }
 
     let(:sample_response) { File.read("./spec/support/fixtures/token_generation.json") }
 
@@ -29,7 +29,6 @@ describe PromisePay::Marketplace do
     it "outputs the generated marketplace token" do
       expected_output = "Your marketplace token is: 123abc (Store this securely)"
       STDOUT.should_receive(:puts).with(expected_output)
-
       described_class.initialize(user: user, password: password)
     end
   end

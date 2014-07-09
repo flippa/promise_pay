@@ -27,13 +27,11 @@ describe PromisePay::Request do
 
     it "re-raises RestClient::Unauthorized exceptions" do
       RestClient::Request.any_instance.stub(:execute) { raise RestClient::Unauthorized }
-
       expect { request.execute }.to raise_error PromisePay::RequestError
     end
 
     it "re-raises RestClient::BadRequest exceptions" do
       RestClient::Request.any_instance.stub(:execute) { raise RestClient::BadRequest }
-
       expect { request.execute }.to raise_error PromisePay::RequestError
     end
   end
