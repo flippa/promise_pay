@@ -25,7 +25,7 @@ describe PromisePay::Marketplace do
       allow(request).to receive(:execute) { raise RestClient::Unauthorized }
 
       expect { described_class.initialize(user: user, password: password) }.
-        to raise_error PromisePay::MarketplaceInitializationError
+        to raise_error PromisePay::RequestError
     end
   end
 end

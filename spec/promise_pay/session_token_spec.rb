@@ -39,14 +39,14 @@ describe PromisePay::SessionToken do
         allow(request).to receive(:execute) { raise RestClient::Unauthorized }
 
         expect { described_class.generate_for(valid_params) }.
-          to raise_error PromisePay::SessionTokenGenerationError
+          to raise_error PromisePay::RequestError
       end
 
       it "raises an exception when a RestClient raises a BadRequest excpetion" do
         allow(request).to receive(:execute) { raise RestClient::BadRequest }
 
         expect { described_class.generate_for(valid_params) }.
-          to raise_error PromisePay::SessionTokenGenerationError
+          to raise_error PromisePay::RequestError
       end
     end
 

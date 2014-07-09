@@ -1,4 +1,3 @@
-require "rest_client"
 require "json"
 require 'active_support/core_ext/object'
 
@@ -29,26 +28,14 @@ module PromisePay
     end
 
     def generate
-      request = RestClient::Request.new(
-        method:   :get,
-        url:      end_point,
-        user:     "liam.norton@flippa.com",
-        password: "ee0003894f34f1854e4d2f1d38d081c8",
-        headers:  { accept: :json, content_type: :json }
-      )
-
-      begin
-        response = request.execute
-      rescue RestClient::Unauthorized, RestClient::BadRequest => e
-        raise SessionTokenGenerationError, e.message
-      end
+      response = PromisePay::Request.new(endpoint: endpoint).execute
 
       JSON.parse(response)["token"]
     end
 
     private
 
-    def end_point
+    def endpoint
       #API_ENDPOINT + PATH + query_string
       TEST_ENDPOINT + PATH + query_string
     end
@@ -89,6 +76,4 @@ module PromisePay
     attr_reader :fee_ids
     attr_reader :payment_type_id
   end
-
-  class SessionTokenGenerationError < StandardError; end
 end

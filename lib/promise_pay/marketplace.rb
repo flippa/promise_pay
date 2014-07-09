@@ -1,4 +1,3 @@
-require "rest_client"
 require "json"
 
 module PromisePay
@@ -15,19 +14,11 @@ module PromisePay
     end
 
     def request_token
-      request = RestClient::Request.new(
-        method:   :get,
-        url:      end_point,
-        user:     user,
-        password: password,
-        headers:  { accept: :json, content_type: :json }
-      )
-
-      begin
-        response = request.execute
-      rescue RestClient::Unauthorized => e
-        raise ::PromisePay::MarketplaceInitializationError, e.message
-      end
+      response = PromisePay::Request.new(
+        endpoint:   endpoint,
+        user:       user,
+        password:   password
+      ).execute
 
       token = ::JSON.parse(response)["token"]
       puts "Your marketplace token is: #{token} (Store this securely)"
@@ -35,7 +26,7 @@ module PromisePay
 
     private
 
-    def end_point
+    def endpoint
       #API_ENDPOINT + PATH
       TEST_ENDPOINT + PATH
     end
@@ -43,6 +34,4 @@ module PromisePay
     attr_reader :user
     attr_reader :password
   end
-
-  class MarketplaceInitializationError < StandardError; end
 end
