@@ -11,13 +11,13 @@ module PromisePay
 
       class_option :test, type: :boolean, default: :false, description: "Initalize to test.api.promisepay.com"
 
-      desc "Initalize PromisePay API key"
+      desc "Request PromisePay API key and setup initializer"
 
       def marketplace
         @marketplace ||= (
           PromisePay.env = options.test? ? :test : :production
           t = PromisePay::Marketplace.new(user: email, password: password)
-          p t
+          p t.send(:request)
           t
         )
       end
