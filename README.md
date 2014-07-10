@@ -16,27 +16,19 @@ Or install it yourself as:
 
     $ gem install promise_pay
 
-Generate your PromizePay API key:
+Generate your PromizePay API key and the rails promise_pay initializer:
 
-    $ rails generate promise_pay:initialize
-
-Add the following to `config/initializers/promise_pay.rb`:
-
-```ruby
-require "promise_pay"
-
-PromisePay.api_user = "your@email"
-PromisePay.api_key  = "generated_key_123"
-PromisePay.env      = :production
-```
+    $ rails generate promise_pay:init [email] [password]
 
 You're set to go!
 
-## Configuration
+## Extra Info
 
-Add the following to `config/initializers.promise_pay.rb` to communicate with PromisePay's test server
+To test in PromisePay's test environment, set the following in `config/initializers/promise_pay.rb`:
 
     PromisePay.env = :test
+
+(Don't lose your production key when swapping between environments!)
 
 ## Usage
 
@@ -44,7 +36,7 @@ Add the following to `config/initializers.promise_pay.rb` to communicate with Pr
 # Generate a PromisePay session, passing a hash of params
 PromisePay::SessionToken.generate_for(session_params) => "8cfd23e3-196e-4a45-ab16-d1213094871e"
 
-# session token generation in the near future
+# Or create a `SessionToken` object to build up (TODO: this)
 session_token = PromisePay::SessionToken.new(session_params)
 session_token.buyer_email = "updated@email"
 session_token.generate => "8cfd23e3-196e-4a45-ab16-d1213094871e"

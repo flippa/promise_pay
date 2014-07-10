@@ -16,9 +16,7 @@ module PromisePay
       def marketplace
         @marketplace ||= (
           PromisePay.env = options.test? ? :test : :production
-          t = PromisePay::Marketplace.new(user: email, password: password)
-          p t.send(:request)
-          t
+          PromisePay::Marketplace.new(user: email, password: password)
         )
       end
 
@@ -27,8 +25,8 @@ module PromisePay
           begin
             marketplace.request_token
           rescue PromisePay::RequestError
-            p "WARNING: token generation failed (Check your credentials)"
-            "[insert-token-here]"
+            puts "WARNING: token generation failed (Check your credentials)"
+            "token"
           end
         )
       end
