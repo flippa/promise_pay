@@ -10,11 +10,12 @@ module PromisePay
 
       desc "Initalize PromisePay API key"
 
-      # run the marketplace token request command
-      # write the output to the initializer
+      def marketplace
+        @marketplace ||= PromisePay::Marketplace.new(user: email, password: password)
+      end
 
-      def custom_method_call
-        puts "Yesss i got called..."
+      def token
+        @token ||= marketplace.request_token
       end
 
       def copy_initializer

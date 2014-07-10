@@ -3,10 +3,6 @@ require "json"
 module PromisePay
   class Marketplace
 
-    def self.initialize(options = {})
-      new(options).request_token
-    end
-
     def initialize(options = {})
       @user     = options.fetch :user
       @password = options.fetch :password
@@ -19,8 +15,7 @@ module PromisePay
         password: password
       ).execute
 
-      token = ::JSON.parse(response)["token"]
-      puts "Your marketplace token is: #{token} (Store this securely)"
+      JSON.parse(response)["token"]
     end
 
     private
