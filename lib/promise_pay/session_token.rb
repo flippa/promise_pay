@@ -3,7 +3,6 @@ require 'active_support/core_ext/object'
 
 module PromisePay
   class SessionToken
-    PATH = "/request_session_token?"
 
     def self.generate_for(options = {})
       new(options).generate
@@ -28,16 +27,15 @@ module PromisePay
     end
 
     def generate
-      response = PromisePay::Request.new(endpoint: endpoint).execute
+      response = PromisePay::Request.new(path: path).execute
 
       JSON.parse(response)["token"]
     end
 
     private
 
-    def endpoint
-      #API_ENDPOINT + PATH + query_string
-      TEST_ENDPOINT + PATH + query_string
+    def path
+      "request_session_token?#{query_string}"
     end
 
     def query_string

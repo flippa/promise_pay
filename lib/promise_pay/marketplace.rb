@@ -2,7 +2,6 @@ require "json"
 
 module PromisePay
   class Marketplace
-    PATH = "/request_token"
 
     def self.initialize(options = {})
       new(options).request_token
@@ -15,9 +14,9 @@ module PromisePay
 
     def request_token
       response = PromisePay::Request.new(
-        endpoint:   endpoint,
-        user:       user,
-        password:   password
+        path:     path,
+        user:     user,
+        password: password
       ).execute
 
       token = ::JSON.parse(response)["token"]
@@ -26,9 +25,8 @@ module PromisePay
 
     private
 
-    def endpoint
-      #API_ENDPOINT + PATH
-      TEST_ENDPOINT + PATH
+    def path
+      "request_token"
     end
 
     attr_reader :user

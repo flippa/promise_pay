@@ -4,7 +4,7 @@ module PromisePay
   class Request
 
     def initialize(options = {})
-      @endpoint = options.fetch :endpoint
+      @path     = options.fetch :path
       @user     = options.fetch :user,          PromisePay.api_user
       @password = options.fetch :password,      PromisePay.api_key
       @request  = build_request
@@ -32,7 +32,12 @@ module PromisePay
       )
     end
 
-    attr_reader :endpoint
+    def endpoint
+      # TODO: logic around with host to talk to using @env
+      TEST_HOST + path
+    end
+
+    attr_reader :path
     attr_reader :user
     attr_reader :password
     attr_reader :request

@@ -2,7 +2,6 @@ require "json"
 
 module PromisePay
   class User
-    PATH = "/users/"
 
     def self.find(user_id)
       new(user_id: user_id).query
@@ -17,16 +16,15 @@ module PromisePay
     end
 
     def query
-      response = PromisePay::Request.new(endpoint: endpoint).execute
+      response = PromisePay::Request.new(path: path).execute
 
       JSON.parse(response)
     end
 
     private
 
-    def endpoint
-      #API_ENDPOINT + PATH + user_id.to_s
-      TEST_ENDPOINT + PATH + user_id.to_s
+    def path
+      "users/#{user_id}"
     end
 
     attr_reader :user_id

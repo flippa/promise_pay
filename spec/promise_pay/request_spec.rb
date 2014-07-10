@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe PromisePay::Request do
-  let(:request) { described_class.new(endpoint: "https://api.promise_pay.com") }
+  let(:request) { described_class.new(path: "https://test.api.promise_pay.com/") }
 
   before do
     PromisePay.api_user = "some@email"
@@ -9,7 +9,7 @@ describe PromisePay::Request do
   end
 
   describe "#initialize" do
-    it "takes an mandatory endpoint arguement" do
+    it "takes an mandatory path arguement" do
       expect { described_class.new(user: "user@email.com", password: "password") }.
         to raise_error KeyError
     end

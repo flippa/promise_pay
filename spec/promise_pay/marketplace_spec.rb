@@ -13,11 +13,11 @@ describe PromisePay::Marketplace do
       STDOUT.stub(:puts) { "" }
     end
 
-    it "instantiates PromisePay::Request with the correct endpoint" do
-      valid_endpoint = PromisePay::TEST_ENDPOINT + PromisePay::Marketplace::PATH
+    it "instantiates PromisePay::Request with the correct path" do
+      valid_path = "request_token"
 
       PromisePay::Request.should_receive(:new).with(
-        endpoint: valid_endpoint,
+        path:     valid_path,
         user:     user,
         password: password
       )

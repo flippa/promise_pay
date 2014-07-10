@@ -15,9 +15,9 @@ describe PromisePay::User do
       expect(described_class.find(user_id)).to be_a_kind_of Hash
     end
 
-    it "instantiates PromisePay::Request with the correct endpoint" do
-      valid_endpoint = PromisePay::TEST_ENDPOINT + PromisePay::User::PATH + user_id.to_s
-      PromisePay::Request.should_receive(:new).with(endpoint: valid_endpoint)
+    it "instantiates PromisePay::Request with the correct path" do
+      valid_path = "users/#{user_id}"
+      PromisePay::Request.should_receive(:new).with(path: valid_path)
       described_class.find(user_id)
     end
   end
@@ -29,9 +29,9 @@ describe PromisePay::User do
       expect(described_class.all).to be_a_kind_of Hash
     end
 
-    it "instantiates PromisePay::Request with the correct endpoint" do
-      valid_endpoint = PromisePay::TEST_ENDPOINT + PromisePay::User::PATH
-      PromisePay::Request.should_receive(:new).with(endpoint: valid_endpoint)
+    it "instantiates PromisePay::Request with the correct path" do
+      valid_path = "users/"
+      PromisePay::Request.should_receive(:new).with(path: valid_path)
       described_class.all
     end
   end

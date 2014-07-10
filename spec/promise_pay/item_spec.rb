@@ -15,9 +15,9 @@ describe PromisePay::Item do
       expect(described_class.find(item_id)).to be_a_kind_of Hash
     end
 
-    it "instantiates PromisePay::Request with the correct endpoint" do
-      valid_endpoint = PromisePay::TEST_ENDPOINT + PromisePay::Item::PATH + item_id.to_s
-      PromisePay::Request.should_receive(:new).with(endpoint: valid_endpoint)
+    it "instantiates PromisePay::Request with the correct path" do
+      valid_path = "items/#{item_id}"
+      PromisePay::Request.should_receive(:new).with(path: valid_path)
       described_class.find(item_id)
     end
   end
@@ -29,9 +29,9 @@ describe PromisePay::Item do
       expect(described_class.all).to be_a_kind_of Hash
     end
 
-    it "instantiates PromisePay::Request with the correct endpoint" do
-      valid_endpoint = PromisePay::TEST_ENDPOINT + PromisePay::Item::PATH
-      PromisePay::Request.should_receive(:new).with(endpoint: valid_endpoint)
+    it "instantiates PromisePay::Request with the correct path" do
+      valid_path = "items/"
+      PromisePay::Request.should_receive(:new).with(path: valid_path)
       described_class.all
     end
   end

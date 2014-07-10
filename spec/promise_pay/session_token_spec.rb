@@ -29,9 +29,9 @@ describe PromisePay::SessionToken do
         PromisePay::Request.stub(:new) { request }
       end
 
-      it "instantiates PromisePay::Request with the correct endpoint" do
-        valid_endpoint = PromisePay::TEST_ENDPOINT + PromisePay::SessionToken::PATH + valid_params.to_param
-        PromisePay::Request.should_receive(:new).with(endpoint: valid_endpoint)
+      it "instantiates PromisePay::Request with the correct path" do
+        valid_path = "request_session_token?#{valid_params.to_param}"
+        PromisePay::Request.should_receive(:new).with(path: valid_path)
         described_class.generate_for(valid_params)
       end
 
