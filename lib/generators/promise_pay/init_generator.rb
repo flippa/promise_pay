@@ -5,8 +5,8 @@ module PromisePay
     class InitGenerator < Rails::Generators::Base
       source_root File.expand_path("../../templates", __FILE__)
 
-      arguement :email,     type: :string
-      arguement :password,  type: :string
+      argument :email,     type: :string
+      argument :password,  type: :string
 
       desc "Initalize PromisePay API key"
 
