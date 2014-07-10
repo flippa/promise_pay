@@ -17,14 +17,20 @@ module PromisePay
         @marketplace ||= (
           PromisePay.env = options.test? ? :test : :production
           t = PromisePay::Marketplace.new(user: email, password: password)
+          p t
           t
         )
       end
 
       def token
-        #@token ||= marketplace.request_token
-        p marketplace.request_token
-        "token_test"
+        @token ||= (
+          begin
+            marketplace.request_token
+          rescue PromisePay::RequestError
+            p "WARNING: token generation failed (Check your credentials)"
+            "[insert-token-here]"
+          end
+        )
       end
 
       def copy_initializer
