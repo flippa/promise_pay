@@ -13,9 +13,13 @@ module PromisePay
 
       desc "Request PromisePay API key and setup initializer"
 
+      def env
+        @env ||= options.test? ? :test : :production
+      end
+
       def marketplace
         @marketplace ||= (
-          PromisePay.env = options.test? ? :test : :production
+          PromisePay.env = env
           PromisePay::Marketplace.new(user: email, password: password)
         )
       end
