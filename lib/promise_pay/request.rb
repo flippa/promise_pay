@@ -12,7 +12,6 @@ module PromisePay
 
     def execute
       begin
-        raise request.inspect
         response = request.execute
       rescue RestClient::Unauthorized, RestClient::BadRequest => e
         raise RequestError, e.message
