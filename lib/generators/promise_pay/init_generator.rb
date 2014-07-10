@@ -9,10 +9,16 @@ module PromisePay
       argument :email,     type: :string
       argument :password,  type: :string
 
+      class_option :test, type: :boolean, default: :false, description: "Initalize to test.api.promisepay.com"
+
       desc "Initalize PromisePay API key"
 
       def marketplace
-        @marketplace ||= PromisePay::Marketplace.new(user: email, password: password)
+        @marketplace ||= (
+          PromisePay.env = options.test? ? :test : :production
+          t = PromisePay::Marketplace.new(user: email, password: password)
+          t
+        )
       end
 
       def token
