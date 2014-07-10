@@ -1,4 +1,5 @@
 require "rails/generators/base"
+require "promise_pay"
 
 module PromisePay
   module Generators
@@ -15,7 +16,9 @@ module PromisePay
       end
 
       def token
-        @token ||= marketplace.request_token
+        #@token ||= marketplace.request_token
+        p marketplace.request_token
+        "token_test"
       end
 
       def copy_initializer
