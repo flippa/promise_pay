@@ -7,6 +7,9 @@ module PromisePay
 
       desc "Initalize PromisePay API key"
 
+      # run the marketplace token request command
+      # write the output to the initializer
+
       def copy_initializer
         template "promise_pay_initializer.rb", "config/initializers/promise_pay.rb"
       end

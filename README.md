@@ -16,9 +16,9 @@ Or install it yourself as:
 
     $ gem install promise_pay
 
-Generate your API key by jumping into a rails console and running:
+Generate your PromizePay API key:
 
-    irb(main):001:0> PromisePay::Marketplace.initialize(user: "your@email", password: "your-promisepay-password")
+    $ rails generate promise_pay:initialize
 
 Add the following to `config/initializers/promise_pay.rb`:
 
@@ -27,6 +27,7 @@ require "promise_pay"
 
 PromisePay.api_user = "your@email"
 PromisePay.api_key  = "generated_key_123"
+PromisePay.env      = :production
 ```
 
 You're set to go!
