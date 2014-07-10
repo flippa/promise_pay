@@ -18,7 +18,7 @@ Or install it yourself as:
 
 Generate your PromizePay API key and the rails promise_pay initializer:
 
-    $ rails generate promise_pay:init EMAIL PASSWORD [--test]
+    $ rails generate promise_pay:init EMAIL PASSWORD
 
 You're set to go!
 
