@@ -4,11 +4,8 @@ describe PromisePay::Request do
   let(:request) { described_class.new(endpoint: "https://api.promise_pay.com") }
 
   before do
-    PromisePay.configuration = PromisePay::Configuration.new
-    PromisePay.configure do |config|
-      config.api_user = "user@email.com"
-      config.api_key  = "abc123"
-    end
+    PromisePay.api_user = "some@email"
+    PromisePay.api_key  = "generated_key_123"
   end
 
   describe "#initialize" do
@@ -42,5 +39,7 @@ describe PromisePay::Request do
       RestClient::Request.any_instance.stub(:execute) { raise RestClient::BadRequest }
       expect { request.execute }.to raise_error PromisePay::RequestError
     end
+
+    it "raises exception when no api credentials are present"
   end
 end

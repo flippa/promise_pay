@@ -20,13 +20,13 @@ Generate your API key by jumping into a rails console and running:
 
     irb(main):001:0> PromisePay::Marketplace.initialize(user: "your@email", password: "your-promisepay-password")
 
-Add the following to `/config/initializers/promise_pay.rb`:
+Add the following to `config/initializers/promise_pay.rb`:
 
 ```ruby
-PromisePay.configure do |config|
-  config.api_user = "api_email" # substitute with your PromisePay API email
-  config.api_key = "api_key" # substitute with your PromisePay API key (generated above)
-end
+require "promise_pay"
+
+PromisePay.api_user = "your@email"
+PromisePay.api_key  = "generated_key_123"
 ```
 
 You're set to go!
@@ -34,8 +34,13 @@ You're set to go!
 ## Usage
 
 ```ruby
-# Generate a PromisePay session, returns the session string
-PromisePay::SessionToken.generate_for(session_params)
+# Generate a PromisePay session, passing a hash of params
+PromisePay::SessionToken.generate_for(session_params) => "8cfd23e3-196e-4a45-ab16-d1213094871e"
+
+# session token generation in the near future
+session_token = PromisePay::SessionToken.new(session_params)
+session_token.buyer_email = "updated@email"
+session_token.generate => "8cfd23e3-196e-4a45-ab16-d1213094871e"
 
 # Query PromisePay for all users returning a hash of results
 PromisePay::User.all
@@ -52,8 +57,8 @@ PromisePay::Item.find("1s345")
 
 ## TODO:
 
-1. Standardize the input params for PromisePay::User
-2. Try to break it!
+1. Wrap all return objects in a PromisePay::Type
+2. Move the API key generation into a generator
 
 ## Contributing
 

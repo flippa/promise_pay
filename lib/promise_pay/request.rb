@@ -5,9 +5,8 @@ module PromisePay
 
     def initialize(options = {})
       @endpoint = options.fetch :endpoint
-      @config   = options.fetch :configuration, PromisePay.configuration
-      @user     = options.fetch :user,          config.api_user
-      @password = options.fetch :password,      config.api_key
+      @user     = options.fetch :user,          PromisePay.api_user
+      @password = options.fetch :password,      PromisePay.api_key
       @request  = build_request
     end
 
@@ -34,7 +33,6 @@ module PromisePay
     end
 
     attr_reader :endpoint
-    attr_reader :config
     attr_reader :user
     attr_reader :password
     attr_reader :request
