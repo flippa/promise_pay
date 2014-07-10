@@ -28,9 +28,9 @@ To use PromisePay's test API, set the following in `config/initializers/promise_
 
     PromisePay.env = :test
 
-Along with your test API credentials, you can generate your test API key using
-the `--test` option with the generator above. Note that running the generator
-could overwrite `config/initializers/promise_pay.rb`.
+You can generate your test API key using the `--test` option with the generator
+above. Note that running the generator could overwrite
+`config/initializers/promise_pay.rb`.
 
 ## Usage
 
