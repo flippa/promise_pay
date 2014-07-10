@@ -33,8 +33,15 @@ module PromisePay
     end
 
     def endpoint
-      # TODO: logic around with host to talk to using @env
-      TEST_HOST + path
+      host + path
+    end
+
+    def host
+      if PromisePay.env && PromisePay.env == :test
+        TEST_HOST
+      else
+        API_HOST
+      end
     end
 
     attr_reader :path

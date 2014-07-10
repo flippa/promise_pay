@@ -9,10 +9,6 @@ module PromisePay
   API_HOST  = "https://api.promisepay.com/"
   TEST_HOST = "https://test.api.promisepay.com/"
 
-  def initialize(params = {})
-    @env = params.fetch(:env, :production)
-  end
-
   class << self
     attr_accessor :api_user
     attr_accessor :api_key

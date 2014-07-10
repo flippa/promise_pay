@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe PromisePay::Request do
-  let(:request) { described_class.new(path: "https://test.api.promise_pay.com/") }
+  let(:request) { described_class.new(path: "users/") }
 
   before do
     PromisePay.api_user = "some@email"
@@ -16,6 +16,12 @@ describe PromisePay::Request do
 
     it "takes optional user and password arguements" do
       expect(request).to be_an_instance_of PromisePay::Request
+    end
+
+    it "uses the test api when configured" do
+      expect { PromisePay.env = :test }.
+        to change { request.send(:endpoint).start_with? PromisePay::TEST_HOST }.
+        from(false).to(true)
     end
 
     it "builds a RestClient::Request" do

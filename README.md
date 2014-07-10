@@ -31,6 +31,12 @@ PromisePay.api_key  = "generated_key_123"
 
 You're set to go!
 
+## Configuration
+
+Add the following to `config/initializers.promise_pay.rb` to communicate with PromisePay's test server
+
+    PromisePay.env = :test
+
 ## Usage
 
 ```ruby
