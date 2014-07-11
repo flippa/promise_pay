@@ -14,4 +14,6 @@ module PromisePay
     attr_accessor :api_key
     attr_accessor :env
   end
+
+  class PromisePay::InvalidRequest < StandardError; end
 end

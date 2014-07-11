@@ -11,28 +11,32 @@ describe PromisePay::Item do
     let(:sample_response) { File.read("./spec/support/fixtures/item_find.json") }
     let(:item_id)         { "wef9834tg" }
 
-    it "returns a hash representation of the item" do
-      expect(described_class.find(item_id)).to be_a_kind_of Hash
+    it "raises an exception with no valid arg" do
+      expect { described_class.find }.to raise_error PromisePay::InvalidRequest
+    end
+
+    it "returns a PromisePay::Item object" do
+      expect(described_class.find(item_id)).to be_a_kind_of PromisePay::Item
+    end
+
+    it "returns object has correctly assigned attributes" do
+      promise_pay_item = described_class.find(item_id)
+      expect(promise_pay_item.id).to eq "wef9834tg"
+      expect(promise_pay_item.name).to eq "ItemName"
+      expect(promise_pay_item.amount).to eq 10
+      expect(promise_pay_item.state).to eq "pending"
+    end
+
+    it "formats created_at and updated_at as Time" do
+      promise_pay_item = described_class.find(item_id)
+      expect(promise_pay_item.created_at).to be_a_kind_of Time
+      expect(promise_pay_item.updated_at).to be_a_kind_of Time
     end
 
     it "instantiates PromisePay::Request with the correct path" do
       valid_path = "items/#{item_id}"
       PromisePay::Request.should_receive(:new).with(path: valid_path)
       described_class.find(item_id)
-    end
-  end
-
-  describe ".all" do
-    let(:sample_response) { File.read("./spec/support/fixtures/item_all.json") }
-
-    it "returns a hash representation of the items" do
-      expect(described_class.all).to be_a_kind_of Hash
-    end
-
-    it "instantiates PromisePay::Request with the correct path" do
-      valid_path = "items/"
-      PromisePay::Request.should_receive(:new).with(path: valid_path)
-      described_class.all
     end
   end
 end

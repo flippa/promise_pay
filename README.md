@@ -59,7 +59,7 @@ PromisePay::Item.find("1s345")
 ## TODO:
 
 1. Wrap all return objects in a PromisePay::Type
-2. Move the API key generation into a generator
+2. Move all errors into shared file
 
 ## Contributing
 
