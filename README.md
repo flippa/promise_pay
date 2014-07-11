@@ -35,20 +35,20 @@ above. Note that running the generator could overwrite
 ## Usage
 
 ```ruby
-# Generate a PromisePay session token
+# A new PromisePay::Session that generates a session token
 session = PromisePay::Session.new(session_params)
 session.amount = 10
-session.token => nil
-session.request_token
-session.token => "8cfd23e3-196e-4a45-ab16-d1213094871e"
+session.token           => nil
+session.request_token   => "8cfd23e3-196e-4a45-ab16-d1213094871e"
+session.token           => "8cfd23e3-196e-4a45-ab16-d1213094871e"
 
 # Query PromisePay for a user (12345) returning a PromisePay::User object
 user = PromisePay::User.find(12345)
-user.email => "email@addr"
+user.email    => "email@addr"
 
 # Query PromisePay for an item (1s345) returning a PromisePay::Item object
 item = PromisePay::Item.find("1s345")
-item.amount => 10
+item.amount   => 10
 
 ```
 
