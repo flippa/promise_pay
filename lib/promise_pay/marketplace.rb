@@ -3,6 +3,8 @@ require "json"
 module PromisePay
   class Marketplace
 
+    attr_reader :token
+
     def initialize(options = {})
       @user     = options.fetch :user
       @password = options.fetch :password
@@ -10,17 +12,18 @@ module PromisePay
 
     def request_token
       response = PromisePay::Request.new(
-        path:     path,
+        path:     api_resource,
         user:     user,
         password: password
       ).execute
 
-      JSON.parse(response)["token"]
+      @token = JSON.parse(response)["token"]
+      token
     end
 
     private
 
-    def path
+    def api_resource
       "request_token"
     end
 

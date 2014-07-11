@@ -1,9 +1,9 @@
-require "promise_pay/version"
-require "promise_pay/request"
-require "promise_pay/session_token"
-require "promise_pay/marketplace"
-require "promise_pay/user"
 require "promise_pay/item"
+require "promise_pay/marketplace"
+require "promise_pay/request"
+require "promise_pay/session"
+require "promise_pay/user"
+require "promise_pay/version"
 
 module PromisePay
   API_HOST  = "https://api.promisepay.com/"
