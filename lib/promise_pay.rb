@@ -15,5 +15,6 @@ module PromisePay
     attr_accessor :env
   end
 
-  class PromisePay::InvalidRequest < StandardError; end
+  class InvalidRequest < StandardError; end
+  class InvalidSessionRequest < StandardError; end
 end

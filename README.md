@@ -35,31 +35,28 @@ above. Note that running the generator could overwrite
 ## Usage
 
 ```ruby
-# Generate a PromisePay session, passing a hash of params
-PromisePay::SessionToken.generate_for(session_params) => "8cfd23e3-196e-4a45-ab16-d1213094871e"
+# Generate a PromisePay session token
+session = PromisePay::Session.new(session_params)
+session.amount = 10
+session.token => nil
+session.request_token
+session.token => "8cfd23e3-196e-4a45-ab16-d1213094871e"
 
-# Or create a `SessionToken` object to build up (TODO: this)
-session_token = PromisePay::SessionToken.new(session_params)
-session_token.buyer_email = "updated@email"
-session_token.generate => "8cfd23e3-196e-4a45-ab16-d1213094871e"
+# Query PromisePay for a user (12345) returning a PromisePay::User object
+user = PromisePay::User.find(12345)
+user.email => "email@addr"
 
-# Query PromisePay for all users returning a hash of results
-PromisePay::User.all
+# Query PromisePay for an item (1s345) returning a PromisePay::Item object
+item = PromisePay::Item.find("1s345")
+item.amount => 10
 
-# Query PromisePay for one user (12345) returning a hash for that user
-PromisePay::User.find(12345)
-
-# Query PromisePay for all items returning a hash of results
-PromisePay::Item.all
-
-# Query PromisePay for one item (1s345) returning a hash for that item
-PromisePay::Item.find("1s345")
 ```
 
 ## TODO:
 
-1. Wrap all return objects in a PromisePay::Type
+1. Write .find_all methods
 2. Move all errors into shared file
+3. Don't enforce full params match on session request (?)
 
 ## Contributing
 
