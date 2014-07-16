@@ -4,6 +4,7 @@ require "promise_pay/request"
 require "promise_pay/session"
 require "promise_pay/user"
 require "promise_pay/version"
+require "promise_pay/collection"
 
 module PromisePay
   API_HOST  = "https://secure.api.promisepay.com/"

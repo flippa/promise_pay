@@ -46,6 +46,9 @@ describe PromisePay::Request do
       expect { request.execute }.to raise_error PromisePay::RequestError
     end
 
-    it "raises exception when no api credentials are present"
+    it "raises exception when no api credentials are present" do
+      PromisePay.api_user = nil
+      expect { request.execute }.to raise_error PromisePay::RequestError
+    end
   end
 end
