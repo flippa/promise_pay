@@ -7,10 +7,10 @@ Gem::Specification.new do |spec|
   spec.name          = "promise_pay"
   spec.version       = PromisePay::VERSION
   spec.authors       = ["Liam Norton"]
-  spec.email         = ["iamliamnorton@gmail.com"]
+  spec.email         = ["liam.norton@flippa.com"]
   spec.summary       = %q{PromisePay gem}
-  spec.description   = %q{PromisePay gem}
-  spec.homepage      = "https://github.com/flippa/promise_pay"
+  spec.description   = %q{PromisePay gem for API calls wrapped in Ruby}
+  spec.homepage      = "https://github.com/iamliamnorton/promise_pay"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
