@@ -47,8 +47,25 @@ describe PromisePay::Session do
     end
 
     context "with invalid params" do
-      valid_params.each do |param|
-        let(:invalid_params)  { valid_params.reject { |k, v| k == param[0] } }
+      required_params =
+        [
+          :current_user_id,
+          :currency,
+          :item_name,
+          :amount,
+          :seller_firstname,
+          :buyer_firstname,
+          :seller_email,
+          :buyer_email,
+          :external_item_id,
+          :external_seller_id,
+          :external_buyer_id,
+          :fee_ids,
+          :payment_type_id
+        ]
+
+      required_params.each do |param|
+        let(:invalid_params)  { valid_params.reject { |k, v| k == param } }
         let(:session)         { described_class.new(invalid_params) }
 
         it "raises an error if #{param[0]} option is missing" do

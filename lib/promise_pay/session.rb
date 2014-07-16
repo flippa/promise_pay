@@ -72,7 +72,7 @@ module PromisePay
         external_buyer_id:  external_buyer_id,
         fee_ids:            fee_ids,
         payment_type_id:    payment_type_id
-      }.to_param
+      }.reject { |k,v| v.nil? }.to_param
     end
 
     def enforce_valid_params!
@@ -89,9 +89,7 @@ module PromisePay
         :currency,
         :item_name,
         :amount,
-        :seller_lastname,
         :seller_firstname,
-        :buyer_lastname,
         :buyer_firstname,
         :seller_email,
         :buyer_email,
