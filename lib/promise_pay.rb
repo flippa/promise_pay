@@ -6,7 +6,7 @@ require "promise_pay/user"
 require "promise_pay/version"
 
 module PromisePay
-  API_HOST  = "https://api.promisepay.com/"
+  API_HOST  = "https://secure.api.promisepay.com/"
   TEST_HOST = "https://test.api.promisepay.com/"
 
   class << self
