@@ -56,9 +56,7 @@ item.amount   => 10
 
 ## TODO:
 
-1. Write .find_all methods
-2. Move all errors into shared file
-3. Don't enforce full params match on session request (?)
+1. Move all errors into shared file
 
 ## Contributing
 
