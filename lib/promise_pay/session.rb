@@ -20,6 +20,7 @@ module PromisePay
     attr_accessor :external_buyer_id
     attr_accessor :fee_ids
     attr_accessor :payment_type_id
+    attr_accessor :country_code
 
     def initialize(options = {})
       @current_user_id    = options.fetch :current_user_id,     nil
@@ -37,6 +38,7 @@ module PromisePay
       @external_buyer_id  = options.fetch :external_buyer_id,   nil
       @fee_ids            = options.fetch :fee_ids,             nil
       @payment_type_id    = options.fetch :payment_type_id,     nil
+      @country_code       = options.fetch :country_code,        nil
     end
 
     def request_token
@@ -71,7 +73,8 @@ module PromisePay
         external_seller_id: external_seller_id,
         external_buyer_id:  external_buyer_id,
         fee_ids:            fee_ids,
-        payment_type_id:    payment_type_id
+        payment_type_id:    payment_type_id,
+        country_code:       country_code
       }.reject { |k,v| v.nil? }.to_param
     end
 
@@ -97,7 +100,8 @@ module PromisePay
         :external_seller_id,
         :external_buyer_id,
         :fee_ids,
-        :payment_type_id
+        :payment_type_id,
+        :country_code
       ]
     end
   end

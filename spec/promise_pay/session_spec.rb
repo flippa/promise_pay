@@ -16,7 +16,8 @@ describe PromisePay::Session do
     external_seller_id: "1",
     external_buyer_id:  "2",
     fee_ids:            "3bfc26e3-093d-4f75-ac06-d2023294882b",
-    payment_type_id:    "1"
+    payment_type_id:    "1",
+    country_code:       "AU"
   }
 
   let(:request) { double("RestClient::Request", execute: sample_response) }
@@ -61,7 +62,8 @@ describe PromisePay::Session do
           :external_seller_id,
           :external_buyer_id,
           :fee_ids,
-          :payment_type_id
+          :payment_type_id,
+          :country_code
         ]
 
       required_params.each do |param|
