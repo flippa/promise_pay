@@ -20,6 +20,10 @@ Generate your PromizePay API key and the rails promise_pay initializer:
 
     $ rails generate promise_pay:init EMAIL PASSWORD
 
+Set your fee-ids from PromisePay in config `config/initializers/promise_pay.rb`:
+
+    PromisePay.fee_ids = "abc-123"
+
 You're set to go!
 
 ## Extra Info
@@ -32,7 +36,7 @@ Along with your test environments api user/key. You can generate all this by run
 
     $ rails generate promise_pay:init EMAIL PASSWORD --test
 
-Note this will overwrite anything in `config/initializers/promise_pay.rb`
+Note this will overwrite anything in `config/initializers/promise_pay.rb`, but you will still need to set your fee-ids manually in this config file.
 
 ## Usage
 
@@ -53,10 +57,6 @@ item = PromisePay::Item.find("1s345")
 item.amount   => 10
 
 ```
-
-## TODO:
-
-1. Move all errors into shared file
 
 ## Contributing
 
