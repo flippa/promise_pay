@@ -73,8 +73,8 @@ module PromisePay
         external_buyer_id:  external_buyer_id,
         fee_ids:            fee_ids,
         payment_type_id:    payment_type_id,
-        seller_country:     seller_country,
-        buyer_country:      buyer_country
+        seller_country:     PromisePay::Country.code_for(seller_country),
+        buyer_country:      PromisePay::Country.code_for(buyer_country)
       }.reject { |k,v| v.nil? }.to_param
     end
 
