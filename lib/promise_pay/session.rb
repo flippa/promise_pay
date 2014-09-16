@@ -6,7 +6,6 @@ module PromisePay
 
     attr_reader   :token
     attr_accessor :current_user_id
-    attr_accessor :currency
     attr_accessor :item_name
     attr_accessor :amount
     attr_accessor :seller_lastname
@@ -20,11 +19,11 @@ module PromisePay
     attr_accessor :external_buyer_id
     attr_accessor :fee_ids
     attr_accessor :payment_type_id
-    attr_accessor :country_code
+    attr_accessor :seller_country
+    attr_accessor :buyer_country
 
     def initialize(options = {})
       @current_user_id    = options.fetch :current_user_id,     nil
-      @currency           = options.fetch :currency,            nil
       @item_name          = options.fetch :item_name,           nil
       @amount             = options.fetch :amount,              nil
       @seller_lastname    = options.fetch :seller_lastname,     nil
@@ -38,7 +37,8 @@ module PromisePay
       @external_buyer_id  = options.fetch :external_buyer_id,   nil
       @fee_ids            = options.fetch :fee_ids,             nil
       @payment_type_id    = options.fetch :payment_type_id,     nil
-      @country_code       = options.fetch :country_code,        nil
+      @seller_country     = options.fetch :seller_country,      nil
+      @buyer_country      = options.fetch :buyer_country,       nil
     end
 
     def request_token
@@ -60,7 +60,6 @@ module PromisePay
     def query_string
       {
         current_user_id:    current_user_id,
-        currency:           currency,
         item_name:          item_name,
         amount:             amount,
         seller_lastname:    seller_lastname,
@@ -74,7 +73,8 @@ module PromisePay
         external_buyer_id:  external_buyer_id,
         fee_ids:            fee_ids,
         payment_type_id:    payment_type_id,
-        country_code:       country_code
+        seller_country:     seller_country,
+        buyer_country:      buyer_country
       }.reject { |k,v| v.nil? }.to_param
     end
 
@@ -89,7 +89,6 @@ module PromisePay
     def required_params
       [
         :current_user_id,
-        :currency,
         :item_name,
         :amount,
         :seller_firstname,
@@ -101,7 +100,8 @@ module PromisePay
         :external_buyer_id,
         :fee_ids,
         :payment_type_id,
-        :country_code
+        :seller_country,
+        :buyer_country
       ]
     end
   end

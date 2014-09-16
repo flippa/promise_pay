@@ -3,7 +3,6 @@ require "spec_helper"
 describe PromisePay::Session do
   valid_params = {
     current_user_id:    "1",
-    currency:           "USD",
     item_name:          "ItemName",
     amount:             "10",
     seller_firstname:   "Alex",
@@ -17,7 +16,8 @@ describe PromisePay::Session do
     external_buyer_id:  "2",
     fee_ids:            "3bfc26e3-093d-4f75-ac06-d2023294882b",
     payment_type_id:    "1",
-    country_code:       "AU"
+    buyer_country:      "AUS",
+    seller_country:     "USA"
   }
 
   let(:request) { double("RestClient::Request", execute: sample_response) }
@@ -51,7 +51,6 @@ describe PromisePay::Session do
       required_params =
         [
           :current_user_id,
-          :currency,
           :item_name,
           :amount,
           :seller_firstname,
@@ -63,7 +62,8 @@ describe PromisePay::Session do
           :external_buyer_id,
           :fee_ids,
           :payment_type_id,
-          :country_code
+          :buyer_country,
+          :seller_country
         ]
 
       required_params.each do |param|
