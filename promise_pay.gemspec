@@ -24,5 +24,5 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "activesupport", ">= 2.3"
   spec.add_runtime_dependency "json"
-  spec.add_runtime_dependency "rest_client"
+  spec.add_runtime_dependency "rest-client", "~> 1.7"
 end
