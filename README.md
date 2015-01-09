@@ -1,5 +1,7 @@
 # PromisePay
 
+[![Build Status](https://travis-ci.org/iamliamnorton/promise_pay.svg?branch=master)](https://travis-ci.org/iamliamnorton/promise_pay)
+
 PromisePay API calls wrapped in a gem
 
 ## Installation
