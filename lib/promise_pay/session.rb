@@ -98,7 +98,6 @@ module PromisePay
         :external_item_id,
         :external_seller_id,
         :external_buyer_id,
-        :fee_ids,
         :payment_type_id,
         :seller_country,
         :buyer_country
