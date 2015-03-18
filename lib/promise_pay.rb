@@ -15,7 +15,6 @@ module PromisePay
     attr_accessor :api_user
     attr_accessor :api_key
     attr_accessor :env
-    attr_accessor :fee_ids
   end
 
   class InvalidRequest < StandardError; end
