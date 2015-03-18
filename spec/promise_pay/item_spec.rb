@@ -4,7 +4,7 @@ describe PromisePay::Item do
   let(:request) { double("PromisePay::Request", execute: sample_response) }
 
   before do
-    PromisePay::Request.stub(:new) { request }
+    allow(PromisePay::Request).to receive(:new) { request }
   end
 
   describe ".find" do
@@ -31,7 +31,7 @@ describe PromisePay::Item do
 
     it "instantiates PromisePay::Request with the correct path" do
       valid_path = "items/#{item_id}"
-      PromisePay::Request.should_receive(:new).with(path: valid_path)
+      expect(PromisePay::Request).to receive(:new).with(path: valid_path)
       described_class.find(item_id)
     end
   end
@@ -54,7 +54,7 @@ describe PromisePay::Item do
 
     it "instantiates PromisePay::Request with the correct path" do
       valid_path = "items/"
-      PromisePay::Request.should_receive(:new).with(path: valid_path)
+      expect(PromisePay::Request).to receive(:new).with(path: valid_path)
       described_class.find_all
     end
   end

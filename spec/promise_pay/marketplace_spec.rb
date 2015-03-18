@@ -9,13 +9,13 @@ describe PromisePay::Marketplace do
     let(:password)        { "password" }
 
     before do
-      PromisePay::Request.stub(:new) { request }
+      allow(PromisePay::Request).to receive(:new) { request }
     end
 
     it "instantiates PromisePay::Request with the correct path" do
       valid_path = "request_token"
 
-      PromisePay::Request.should_receive(:new).with(
+      expect(PromisePay::Request).to receive(:new).with(
         path:     valid_path,
         user:     user,
         password: password
@@ -25,7 +25,7 @@ describe PromisePay::Marketplace do
     end
 
     it "returns the generated marketplace token" do
-      described_class.new(user: user, password: password).request_token.should eq("123abc")
+      expect(described_class.new(user: user, password: password).request_token).to eq("123abc")
     end
   end
 end

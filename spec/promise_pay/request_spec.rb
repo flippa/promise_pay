@@ -32,17 +32,21 @@ describe PromisePay::Request do
   describe "#execute" do
     it "calls the RestClient::Request to be exectued" do
       rest_client_request = request.send(:request)
-      rest_client_request.should_receive(:execute)
+      expect(rest_client_request).to receive(:execute)
       request.execute
     end
 
     it "re-raises RestClient::Unauthorized exceptions" do
-      RestClient::Request.any_instance.stub(:execute) { raise RestClient::Unauthorized }
+      rest_client_request = request.send(:request)
+      allow(rest_client_request).to receive(:execute) { raise RestClient::Unauthorized }
+
       expect { request.execute }.to raise_error PromisePay::RequestError
     end
 
     it "re-raises RestClient::BadRequest exceptions" do
-      RestClient::Request.any_instance.stub(:execute) { raise RestClient::BadRequest }
+      rest_client_request = request.send(:request)
+      allow(rest_client_request).to receive(:execute) { raise RestClient::BadRequest }
+
       expect { request.execute }.to raise_error PromisePay::RequestError
     end
 

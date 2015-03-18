@@ -28,7 +28,7 @@ describe PromisePay::Session do
 
     context "with valid params" do
       before do
-        PromisePay::Request.stub(:new) { request }
+        allow(PromisePay::Request).to receive(:new) { request }
       end
 
       it "returns the generated session token from PromisePay" do
@@ -42,7 +42,7 @@ describe PromisePay::Session do
 
       it "instantiates PromisePay::Request with the correct path" do
         valid_path = "request_session_token?#{valid_params.to_param}"
-        PromisePay::Request.should_receive(:new).with(path: valid_path)
+        expect(PromisePay::Request).to receive(:new).with(path: valid_path)
         session.request_token
       end
     end
