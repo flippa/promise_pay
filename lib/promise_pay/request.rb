@@ -4,9 +4,10 @@ module PromisePay
   class Request
 
     def initialize(options = {})
-      @path     = options.fetch :path
-      @user     = options.fetch :user,          PromisePay.api_user
-      @password = options.fetch :password,      PromisePay.api_key
+      @path     = options.fetch(:path)
+      @user     = options.fetch(:user)      { PromisePay.api_user }
+      @password = options.fetch(:password)  { PromisePay.api_key }
+      @method   = options.fetch(:method)    { :get }
       @request  = build_request
     end
 
@@ -24,7 +25,7 @@ module PromisePay
 
     def build_request
       RestClient::Request.new(
-        method:   :get,
+        method:   method,
         url:      endpoint,
         user:     user,
         password: password,
@@ -47,6 +48,7 @@ module PromisePay
     attr_reader :path
     attr_reader :user
     attr_reader :password
+    attr_reader :method
     attr_reader :request
   end
 

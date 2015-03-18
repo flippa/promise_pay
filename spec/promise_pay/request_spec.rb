@@ -18,14 +18,27 @@ describe PromisePay::Request do
       expect(request).to be_an_instance_of PromisePay::Request
     end
 
-    it "uses the test api when configured" do
-      expect { PromisePay.env = :test }.
-        to change { request.send(:endpoint).start_with? PromisePay::TEST_HOST }.
-        from(false).to(true)
-    end
-
     it "builds a RestClient::Request" do
       expect(request.send(:request)).to be_an_instance_of RestClient::Request
+    end
+
+    it "uses the test api endpoint when configured" do
+      PromisePay.env = :test
+
+      request_endpoint = request.send(:endpoint)
+      expect(request_endpoint.start_with?(PromisePay::TEST_HOST)).to eq(true)
+    end
+
+    it "uses the production api endpoint when configured" do
+      PromisePay.env = :production
+
+      request_endpoint = request.send(:endpoint)
+      expect(request_endpoint.start_with?(PromisePay::API_HOST)).to eq(true)
+    end
+
+    it "takes on optional request method arguement" do
+      request = described_class.new(path: "users/", method: :post)
+      expect(request.send(:method)).to eq(:post)
     end
   end
 
