@@ -3,11 +3,14 @@ require "json"
 
 module PromisePay
   class User
+    include Lib::DynamicAccessors
+
     attr_reader :id
 
     def initialize(id = nil, options = {})
       @id = id
-      assign_instance_variables({'user' => options}) unless options.empty?
+
+      assign_instance_variables({'user' => options})
     end
 
     class << self
@@ -41,27 +44,6 @@ module PromisePay
 
     def api_resource
       "users/#{id}"
-    end
-
-    def assign_instance_variables(result)
-      result["user"].each do |attribute, value|
-        initialize_property(attribute, value)
-      end
-      self
-    end
-
-    def initialize_property(attribute, value)
-      Lib::DynamicAccessors.define_accessor(attribute, value, self) unless accessor_defined?(attribute)
-      set_property(attribute, value)
-    end
-
-    def accessor_defined?(attribute)
-      respond_to?(attribute) && respond_to?("#{attribute}=")
-    end
-
-    def set_property(attribute, value)
-      setter_method = "#{attribute}="
-      self.send(setter_method, value)
     end
   end
 end
