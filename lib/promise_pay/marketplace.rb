@@ -6,8 +6,8 @@ module PromisePay
     attr_reader :token
 
     def initialize(options = {})
-      @user     = options.fetch :user
-      @password = options.fetch :password
+      @user     = options.fetch(:user)
+      @password = options.fetch(:password)
     end
 
     def request_token

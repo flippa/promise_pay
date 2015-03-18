@@ -23,22 +23,22 @@ module PromisePay
     attr_accessor :buyer_country
 
     def initialize(options = {})
-      @current_user_id    = options.fetch :current_user_id,     nil
-      @item_name          = options.fetch :item_name,           nil
-      @amount             = options.fetch :amount,              nil
-      @seller_lastname    = options.fetch :seller_lastname,     nil
-      @seller_firstname   = options.fetch :seller_firstname,    nil
-      @buyer_lastname     = options.fetch :buyer_lastname,      nil
-      @buyer_firstname    = options.fetch :buyer_firstname,     nil
-      @seller_email       = options.fetch :seller_email,        nil
-      @buyer_email        = options.fetch :buyer_email,         nil
-      @external_item_id   = options.fetch :external_item_id,    nil
-      @external_seller_id = options.fetch :external_seller_id,  nil
-      @external_buyer_id  = options.fetch :external_buyer_id,   nil
-      @fee_ids            = options.fetch :fee_ids,             nil
-      @payment_type_id    = options.fetch :payment_type_id,     nil
-      @seller_country     = options.fetch :seller_country,      nil
-      @buyer_country      = options.fetch :buyer_country,       nil
+      @current_user_id    = options.fetch(:current_user_id)     { nil }
+      @item_name          = options.fetch(:item_name)           { nil }
+      @amount             = options.fetch(:amount)              { nil }
+      @seller_lastname    = options.fetch(:seller_lastname)     { nil }
+      @seller_firstname   = options.fetch(:seller_firstname)    { nil }
+      @buyer_lastname     = options.fetch(:buyer_lastname)      { nil }
+      @buyer_firstname    = options.fetch(:buyer_firstname)     { nil }
+      @seller_email       = options.fetch(:seller_email)        { nil }
+      @buyer_email        = options.fetch(:buyer_email)         { nil }
+      @external_item_id   = options.fetch(:external_item_id)    { nil }
+      @external_seller_id = options.fetch(:external_seller_id)  { nil }
+      @external_buyer_id  = options.fetch(:external_buyer_id)   { nil }
+      @fee_ids            = options.fetch(:fee_ids)             { nil }
+      @payment_type_id    = options.fetch(:payment_type_id)     { nil }
+      @seller_country     = options.fetch(:seller_country)      { nil }
+      @buyer_country      = options.fetch(:buyer_country)       { nil }
     end
 
     def request_token
