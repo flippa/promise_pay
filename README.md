@@ -22,10 +22,6 @@ Generate your PromizePay API key and the rails promise_pay initializer:
 
     $ rails generate promise_pay:init EMAIL PASSWORD
 
-Set your fee-ids from PromisePay in config `config/initializers/promise_pay.rb`:
-
-    PromisePay.fee_ids = "abc-123"
-
 You're set to go!
 
 ## Extra Info
@@ -41,6 +37,8 @@ Along with your test environments api user/key. You can generate all this by run
 Note this will overwrite anything in `config/initializers/promise_pay.rb`, but you will still need to set your fee-ids manually in this config file.
 
 ## Usage
+
+All API interations, and therefore all params for these classes can be viewed at the official PromisePay doc website (http://docs.promisepay.com/).
 
 ```ruby
 # A new PromisePay::Session that generates a session token
