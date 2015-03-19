@@ -56,6 +56,10 @@ user.email    => "email@addr"
 item = PromisePay::Item.find("1s345")
 item.amount   => 10
 
+# Create a fee returning a PromisePay::Feelist object
+fee = PromisePay::Feelst.create(fee_params)
+fee.id        => "5c07f36a-d18f-4153-9a75-ebf9f4f2f9ef"
+
 ```
 
 ## Contributing

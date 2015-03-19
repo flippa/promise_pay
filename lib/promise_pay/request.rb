@@ -8,6 +8,7 @@ module PromisePay
       @user     = options.fetch(:user)      { PromisePay.api_user }
       @password = options.fetch(:password)  { PromisePay.api_key }
       @method   = options.fetch(:method)    { :get }
+      @payload  = options.fetch(:payload)   { nil }
       @request  = build_request
     end
 
@@ -24,13 +25,18 @@ module PromisePay
     private
 
     def build_request
-      RestClient::Request.new(
+      RestClient::Request.new(request_params)
+    end
+
+    def request_params
+      {
         method:   method,
         url:      endpoint,
         user:     user,
         password: password,
+        payload:  payload,
         headers:  { accept: :json, content_type: :json }
-      )
+      }
     end
 
     def endpoint
@@ -49,6 +55,7 @@ module PromisePay
     attr_reader :user
     attr_reader :password
     attr_reader :method
+    attr_reader :payload
     attr_reader :request
   end
 
