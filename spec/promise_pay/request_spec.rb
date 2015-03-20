@@ -53,19 +53,19 @@ describe PromisePay::Request do
       rest_client_request = request.send(:request)
       allow(rest_client_request).to receive(:execute) { raise RestClient::Unauthorized }
 
-      expect { request.execute }.to raise_error PromisePay::RequestError
+      expect { request.execute }.to raise_error PromisePay::UnauthorizedRequestError
     end
 
     it "re-raises RestClient::BadRequest exceptions" do
       rest_client_request = request.send(:request)
       allow(rest_client_request).to receive(:execute) { raise RestClient::BadRequest }
 
-      expect { request.execute }.to raise_error PromisePay::RequestError
+      expect { request.execute }.to raise_error PromisePay::BadRequestError
     end
 
     it "raises exception when no api credentials are present" do
       PromisePay.api_user = nil
-      expect { request.execute }.to raise_error PromisePay::RequestError
+      expect { request.execute }.to raise_error PromisePay::UnauthorizedRequestError
     end
   end
 end

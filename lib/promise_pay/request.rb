@@ -15,8 +15,10 @@ module PromisePay
     def execute
       begin
         response = request.execute
-      rescue RestClient::Unauthorized, RestClient::BadRequest => e
-        raise RequestError, e.message
+      rescue RestClient::Unauthorized => e
+        raise UnauthorizedRequestError, e.message
+      rescue RestClient::BadRequest => e
+        raise BadRequestError, e.message
       end
 
       response
@@ -59,5 +61,6 @@ module PromisePay
     attr_reader :request
   end
 
-  class RequestError < StandardError; end
+  class BadRequestError < StandardError; end
+  class UnauthorizedRequestError < StandardError; end
 end
