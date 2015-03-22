@@ -42,7 +42,7 @@ describe PromisePay::Feelist do
     it "instantiates PromisePay::Request with the correct path" do
       expect(PromisePay::Request).
         to receive(:new).
-        with(hash_including(path: 'feelist'))
+        with(hash_including(path: 'fees'))
 
       described_class.create(params)
     end

@@ -45,11 +45,11 @@ module PromisePay
       )
 
       response = request.execute
-      JSON.parse(response)["feelist"]
+      JSON.parse(response)["fees"]
     end
 
     def api_resource
-      "feelist"
+      "fees"
     end
 
     def payload
