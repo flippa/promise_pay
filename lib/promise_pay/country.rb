@@ -55,7 +55,6 @@ module PromisePay
       'CK' => 'COK',
       'CR' => 'CRI',
       'CI' => 'CIV',
-      'HR' => 'HRV',
       'CU' => 'CUB',
       'CY' => 'CYP',
       'CZ' => 'CZE',

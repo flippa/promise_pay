@@ -2,7 +2,7 @@ require "promise_pay/lib/dynamic_accessors"
 require "json"
 
 module PromisePay
-  class Feelist
+  class Fee
     include Lib::DynamicAccessors
 
     attr_reader :id
@@ -27,7 +27,7 @@ module PromisePay
       @max          = options.fetch(:max)
       @to           = options.fetch(:to)
 
-      assign_instance_variables({'feelist' => options})
+      assign_instance_variables({'fees' => options})
     end
 
     def create
@@ -45,11 +45,11 @@ module PromisePay
       )
 
       response = request.execute
-      JSON.parse(response)["feelist"]
+      JSON.parse(response)["fees"]
     end
 
     def api_resource
-      "feelist"
+      "fees"
     end
 
     def payload

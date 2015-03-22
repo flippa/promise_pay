@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe PromisePay::Feelist do
+describe PromisePay::Fee do
   let(:request) { double("PromisePay::Request", execute: sample_response) }
 
   before do
@@ -8,7 +8,7 @@ describe PromisePay::Feelist do
   end
 
   describe ".create" do
-    let(:sample_response) { File.read("./spec/support/fixtures/feelist/create.json") }
+    let(:sample_response) { File.read("./spec/support/fixtures/fee/create.json") }
 
     let(:params) do
       {
@@ -22,8 +22,8 @@ describe PromisePay::Feelist do
       }
     end
 
-    it "returns a PromisePay::Feelist object" do
-      expect(described_class.create(params)).to be_a_kind_of PromisePay::Feelist
+    it "returns a PromisePay::Fee object" do
+      expect(described_class.create(params)).to be_a_kind_of PromisePay::Fee
     end
 
     it "PromisePay::Feelist has correctly assigned attributes" do
@@ -42,7 +42,7 @@ describe PromisePay::Feelist do
     it "instantiates PromisePay::Request with the correct path" do
       expect(PromisePay::Request).
         to receive(:new).
-        with(hash_including(path: 'feelist'))
+        with(hash_including(path: 'fees'))
 
       described_class.create(params)
     end
