@@ -28,7 +28,7 @@ You're set to go!
 
 To use PromisePay's test API, set the following in `config/initializers/promise_pay.rb`:
 
-    PromisePay.env = :test
+    PromisePay.env = :test # probaby should reference config/environments/...
 
 Along with your test environments api user/key. You can generate all this by running:
 
@@ -53,7 +53,7 @@ user = PromisePay::User.find(12345)
 user.email    => "email@addr"
 
 # Query for a status of an item (abc123) returning a PromisePay::Item::Status object
-user = PromisePay::Item::Status.find('abc123')
+user = PromisePay::ItemStatus.find('abc123')
 user.state    => "pending"
 
 # Query PromisePay for an item (1s345) returning a PromisePay::Item object
