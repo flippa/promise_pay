@@ -28,7 +28,8 @@ module PromisePay
         @token ||= (
           begin
             marketplace.request_token
-          rescue PromisePay::RequestError
+          rescue Exception => e
+            puts e
             puts "WARNING: token generation failed (Check your credentials)"
             "token"
           end
@@ -36,7 +37,9 @@ module PromisePay
       end
 
       def copy_initializer
-        template "promise_pay_initializer.rb", "config/initializers/promise_pay.rb"
+        template \
+          "promise_pay_initializer.rb",
+          "config/initializers/promise_pay.rb"
       end
     end
   end
