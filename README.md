@@ -65,6 +65,10 @@ item.amount   => 10
 fee = PromisePay::Feelist.create(fee_params)
 fee.id        => "5c07f36a-d18f-4153-9a75-ebf9f4f2f9ef"
 
+# Create a callback
+fee = PromisePay::Callback.create(url: "https://our.api/callback", object_type: "items")
+fee.id        => "77e4fc66-b695-4e72-90ac-b454c395b867"
+
 ```
 
 ## Contributing
