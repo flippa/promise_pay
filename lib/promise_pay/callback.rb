@@ -5,7 +5,7 @@ module PromisePay
   class Callback
     include Lib::DynamicAccessors
 
-    ENDPOINT = 'callbacks'
+    ENDPOINT = 'callbacks/'
 
     attr_reader :id
     attr_reader :url
@@ -13,27 +13,40 @@ module PromisePay
     attr_reader :object_type
     attr_reader :enabled
 
+    attr_reader :method
+    attr_reader :endpoint
+
+    def self.index(options = {})
+      new(options.merge(method: :get)).execute
+    end
+
+    def self.delete(options = {})
+      new(options.merge(method: :delete)).execute
+    end
+
     def self.create(options = {})
-      new(options).create
+      new(options.merge(method: :post)).execute
     end
 
     def initialize(options = {})
-      @url          = options.fetch(:url)
+      @id           = options.fetch(:id) { nil }
+      @url          = options.fetch(:url) { "" }
       @description  = options.fetch(:description) { "" }
-      @object_type  = options.fetch(:object_type)
+      @object_type  = options.fetch(:object_type) { "" }
       @enabled      = options.fetch(:enabled) { true }
 
-      assign_instance_variables(options)
+      @method       = options.fetch(:method)
+      @endpoint     = ENDPOINT + @id.to_s
     end
 
-    def create
-      assign_instance_variables(resource_result)
+    def execute
+      assign_instance_variables(result)
       self
     end
 
     private
 
-    def resource_result
+    def result
       JSON.parse(response)
     end
 
@@ -43,8 +56,8 @@ module PromisePay
 
     def request
       PromisePay::Request.new(
-        path: ENDPOINT,
-        method: :post,
+        path: endpoint,
+        method: method,
         payload: payload
       )
     end

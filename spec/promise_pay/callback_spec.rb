@@ -3,8 +3,32 @@ require "spec_helper"
 describe PromisePay::Callback do
   let(:request) { double("PromisePay::Request", execute: sample_response) }
 
-  before do
-    allow(PromisePay::Request).to receive(:new) { request }
+  before { allow(PromisePay::Request).to receive(:new).and_return(request) }
+
+  describe ".index" do
+    let(:sample_response) { File.read("./spec/support/fixtures/callback/index.json") }
+
+    it "PromisePay::Callback has correctly assigned attributes" do
+      promise_pay_callback = described_class.index
+
+      expect(promise_pay_callback.callbacks).not_to eq(nil)
+    end
+
+    it "instantiates PromisePay::Request with the correct path" do
+      expect(PromisePay::Request).
+        to receive(:new).
+        with(hash_including(path: PromisePay::Callback::ENDPOINT))
+
+      described_class.index
+    end
+
+    it "instantiates PromisePay::Request with the correct method" do
+      expect(PromisePay::Request).
+        to receive(:new).
+        with(hash_including(method: :get))
+
+      described_class.index
+    end
   end
 
   describe ".create" do
@@ -17,10 +41,6 @@ describe PromisePay::Callback do
         object_type:  "items",
         url:          "https://foo.bar/baz",
       }
-    end
-
-    it "returns a PromisePay::Callback object" do
-      expect(described_class.create(params)).to be_a_kind_of PromisePay::Callback
     end
 
     it "PromisePay::Callback has correctly assigned attributes" do
@@ -57,6 +77,40 @@ describe PromisePay::Callback do
         with(hash_including(payload: params))
 
       described_class.create(params)
+    end
+  end
+
+  describe ".delete" do
+    let(:sample_response) { File.read("./spec/support/fixtures/callback/delete.json") }
+
+    let(:params) do
+      { id: "77e4fc66-b695-4e72-90ac-b454c395b867" }
+    end
+
+    it "PromisePay::Callback has correctly assigned attributes" do
+      promise_pay_callback = described_class.delete(params)
+
+      expect(promise_pay_callback.id).to eq("77e4fc66-b695-4e72-90ac-b454c395b867")
+    end
+
+    it "instantiates PromisePay::Request with the correct path" do
+      expect(PromisePay::Request).
+        to receive(:new).
+        with(
+          hash_including(
+            path: PromisePay::Callback::ENDPOINT + "77e4fc66-b695-4e72-90ac-b454c395b867"
+          )
+        )
+
+      described_class.delete(params)
+    end
+
+    it "instantiates PromisePay::Request with the correct method" do
+      expect(PromisePay::Request).
+        to receive(:new).
+        with(hash_including(method: :delete))
+
+      described_class.delete(params)
     end
   end
 end
