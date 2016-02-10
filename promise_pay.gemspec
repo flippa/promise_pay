@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Liam Norton"]
   spec.email         = ["liam.norton@flippa.com"]
   spec.summary       = %q{PromisePay gem}
-  spec.description   = %q{PromisePay gem for API calls wrapped in Ruby}
+  spec.description   = %q{PromisePay gem for API calls}
   spec.homepage      = "https://github.com/iamliamnorton/promise_pay"
   spec.license       = "MIT"
 
