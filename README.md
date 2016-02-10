@@ -73,8 +73,9 @@ fee.id        => "77e4fc66-b695-4e72-90ac-b454c395b867"
 
 ## Contributing
 
-1. Fork it ( http://github.com/<my-github-username>/promise_pay/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+This project follows [semantic versioning](http://semver.org).
+
+In order to make a change, do so from a feature branch and pull request the
+project. Your pull request should not include a version change. Instead, make
+an addition to the "head" version in the CHANGELOG that briefly describes the
+change and ideally links to the pull request.
