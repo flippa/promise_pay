@@ -7,15 +7,14 @@ module PromisePay
 
     attr_reader :id
 
-    def initialize(id = nil, options = {})
-      @id = id
-
+    def initialize(options = {})
+      @id = options[:id]
       assign_instance_variables({'item' => options})
     end
 
     class << self
       def find(id)
-        new(id).find
+        new(id: id).find
       end
 
       def find_all
@@ -30,7 +29,7 @@ module PromisePay
 
     def find_all
       resource_result.map do |result|
-        self.class.new(nil, result)
+        self.class.new(result)
       end
     end
 

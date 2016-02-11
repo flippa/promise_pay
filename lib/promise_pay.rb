@@ -1,3 +1,4 @@
+require "promise_pay/callback"
 require "promise_pay/item"
 require "promise_pay/marketplace"
 require "promise_pay/request"

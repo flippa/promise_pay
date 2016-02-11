@@ -1,0 +1,13 @@
+{
+  "id": "77e4fc66-b695-4e72-90ac-b454c395b867",
+  "description": "Our callback endpoint",
+  "url": "https://foo.bar/baz",
+  "object_type": "items",
+  "enabled": true,
+  "created_at": "2016-02-10T19:11:18.264Z",
+  "updated_at": "2016-02-10T19:11:18.264Z",
+  "links": {
+    "self": "/callbacks",
+    "responses": "/callbacks/77e4fc66-b695-4e72-90ac-b454c395b867/responses"
+  }
+}
