@@ -1,6 +1,8 @@
 ### head
 
-* Add support for Rails 4
+### 0.2.1
+
+* Add support for Rails 4 [[#11](https://github.com/iamliamnorton/promise_pay/pull/11)]
 
 ### 0.2.0
 
