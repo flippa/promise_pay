@@ -4,6 +4,10 @@
 
 PromisePay API calls wrapped in a gem
 
+## NOTICE
+
+This project is unmaintained. I suggest you use the [official gem](https://github.com/PromisePay/promisepay-ruby).
+
 ## Installation
 
 Add this line to your application's Gemfile:
